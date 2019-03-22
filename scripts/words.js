@@ -8,9 +8,9 @@ let contact_info = [
 ];
 
 let about_me = [
-    'this is a test',
-    `i like turts`,
-    `lol`,
+    'under_construction',
+    `null null null`,
+    `for now..`,
 ];
 
 // break a line: <br>
