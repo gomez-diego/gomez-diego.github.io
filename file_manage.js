@@ -2,30 +2,35 @@ const dir = ['./images/logos/', './images/illustrations/'];
 const fs = require('fs');
 let illustrations = {}
 let logos = {}
-let index = 0;
 
 dir.forEach(directory => {
-    fs.readdirSync(directory).forEach(file => {
-        let ext = file.split(".")[1];
-        fs.rename(directory + file, directory + index + "." + ext, (err) => {
-            if (err) console.log(err);
-        })
-        let attributes = new Object();
-        attributes["image"] = directory + index + "." + ext;
-        if (directory == './images/logos/')
-            logos[index] = attributes;
-        else
-            illustrations[index] = attributes;
-        index++;
-    });
+    let index = 0;
 
-    index = 0;
+    try{
+        fs.readdirSync(directory).forEach(file => {
+            let attributes = new Object();
+            attributes["image"] = directory + file;
+            if (directory == './images/logos/')
+                logos[index] = attributes;
+            else
+                illustrations[index] = attributes;
+            index++;
+        });
+        console.log(directory," : complete.");
+    } catch (err) {
+        console.error(err);
+    }
+    
+
+
 });
 
-illustrations = JSON.stringify(illustrations);0
+illustrations = JSON.stringify(illustrations);
 logos = JSON.stringify(logos);
 
-fs.writeFile('./scripts/files.js', 'let illustrations=' + illustrations + '\nlet logos=' + logos, function (err) {
-    if (err) throw err;
-    console.log('File is created successfully.');
-});
+try {
+    fs.writeFileSync('./scripts/files.js', 'let illustrations=' + illustrations + '\nlet logos=' + logos);
+    console.log('./scripts/files.js'," : File Created.");
+} catch (err) {
+    console.error(err);
+}

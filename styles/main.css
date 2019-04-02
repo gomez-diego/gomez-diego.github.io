@@ -82,7 +82,7 @@ a:hover {
 
 .main-container {
   margin-left: 180px;
-  margin-right: 50px;
+  /*margin-right: 50px;*/
 }
 
 .content-container {
@@ -90,13 +90,18 @@ a:hover {
   padding: 0%;
   text-align: center;
   justify-content: center;
-  overflow: hidden;
+  /*overflow: hidden;*/
+
+  padding-top: 50px;
 }
 
 .img_responsive:hover {
   cursor: pointer;
-  opacity: 0.85;
-  transition: 0.5s;
+  /*opacity: 0.85;*/
+  transition: 0.25s;
+  transform: scale(1.05);
+  border: white 10px solid;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
 }
 
 
@@ -128,7 +133,7 @@ a:hover {
 }
 
 .img_display {
-  padding-top: 25px;
+  /*padding-top: 50px;*/
 }
 
 #scroll {

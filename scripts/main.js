@@ -1,4 +1,5 @@
-let sb_activate = true;
+let sidebar_active = true;
+let image_type;
 
 $(document).ready(function () {
     $("#home").on("click", () => home());
@@ -28,83 +29,98 @@ let display_information = (information) => {
 }
 
 let side_bar = (x) => {
-    if (sb_activate) {
+    if (sidebar_active) {
         $(".side-bar").width("0px");
         $(".main-container").css("margin-left", "0px");
-        sb_activate = false;
+        sidebar_active = false;
     } else {
         $(".side-bar").width("180px");
         $(".main-container").css("margin-left", "180px");
-        sb_activate = true;
+        sidebar_active = true;
     }
+
+    image_adjust(image_type);
 }
 
 let display_image = (element) => {
+    //side_bar();
+    image_type = ".img_display";
     let img = element.target.src;
     $(".main-container").addClass("loading");
     $(".content-container").html("");
     $(".content-container").append(`<img src="${img}" class="img_display blur_loading"></img>`);
     setTimeout(x => {
-        image_adjust(".img_display");
+        image_adjust(image_type); // HERE
         $(".blur_loading").removeClass("blur_loading");
         $(".main-container").removeClass("loading");
         $(".main-container").addClass('animated fadeIn');
-    }, 500);
-    topFunction();
+    }, 250);
     $(".main-container").removeClass('animated fadeIn');
-
-    $(window).resize(function () {
-        image_adjust(".img_display");
-    });
-
 }
 
 let display_art = (currrent_object) => {
+    image_type = ".img_responsive";
     $(".main-container").addClass("loading");
     $(".content-container").html("");
     for (const key in currrent_object) {
         $(".content-container").append(`<img src="${currrent_object[key]["image"]}" class="img_responsive blur_loading"></img>`);
     }
-    setTimeout(x => {
-        image_adjust(".img_responsive");
-        $(".blur_loading").removeClass("blur_loading");
-        $(".main-container").removeClass("loading");
-        $(".main-container").addClass('animated fadeIn');
-    }, 500);
-    topFunction();
-    $(".main-container").removeClass('animated fadeIn');
+
+    let imgs = document.images,
+        len = imgs.length,
+        counter = 0;
+
+    [].forEach.call(imgs, function (img) {
+        img.addEventListener('load', incrementCounter, false);
+        img.addEventListener('error', incrementCounter, false);
+        img.onerror = function () {
+            $(img).remove();
+        }
+    });
+
+    function incrementCounter() {
+        counter++;
+        if (counter === len) {
+            image_adjust(image_type);
+            $(".main-container").removeClass("loading");
+            setTimeout(x => {
+                $(".main-container").addClass('animated fadeIn');
+                scroll_to_top();
+                $(".blur_loading").removeClass("blur_loading");
+            }, 500);
+            $(".main-container").removeClass('animated fadeIn');
+        }
+    }
     $(".img_responsive").on("click", (x) => display_image(x));
 
-    $(window).resize(function () {
-        image_adjust(".img_responsive");
-    });
 }
 
+
 let image_adjust = (type_img) => {
-    let max_width = $(".content-container").width() - 50;
-    let max_height = $(window).innerHeight()
-
-    console.log(max_height);
-
+    let max_width = $(".content-container").width();
+    let max_height = $(window).innerHeight();
     let elements = $(type_img);
-    for (let index = 0; index < elements.length; index++) {
-        if (elements[index].naturalHeight > max_height) {
+
+    if (type_img == ".img_responsive") {
+        for (let index = 0; index < elements.length; index++) {
             $(elements[index]).css({
-                "width": "auto",
-                "height": max_height - 50
-            });
-        }
-        if (elements[index].naturalHeight > max_height && elements[index].naturalWidth > max_width) {
-            $(elements[index]).css({
-                "width": max_width - 250,
+                "width": max_width /3.75,
                 "height": "auto"
             });
         }
-        if (elements[index].naturalWidth > max_width) {
-            $(elements[index]).css({
-                "width": max_width,
-                "height": "auto"
-            });
+    } else {
+        for (let index = 0; index < elements.length; index++) {
+            if(max_height >= max_width) {
+                $(elements[index]).css({
+                    "width": max_width,
+                    "height": "auto"
+                });
+            } else {
+                $(elements[index]).css({
+                    "width": "auto",
+                    "height": max_height-100
+                });
+            }
         }
     }
 }
@@ -120,7 +136,11 @@ window.onscroll = () => {
     }
 }
 
-let topFunction = () => {
+window.addEventListener("resize", function () {
+    image_adjust(image_type);
+});
+
+let scroll_to_top = () => {
     $("html, body").animate({
         scrollTop: 0
     }, "slow");
