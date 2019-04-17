@@ -21,7 +21,7 @@ let display_information = (information) => {
 
     setTimeout(x => {
         information.forEach(element => {
-            let p = `<div class="">${element}<div>`;
+            let p = `<div class="fixed-words">${element}<div>`;
             $(".words").append(p);
         });
         $(".content-container").addClass('animated bounceInLeft');
