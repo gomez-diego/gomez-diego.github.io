@@ -82,7 +82,7 @@ a:hover {
 
 .main-container {
   margin-left: 180px;
-  /*margin-right: 50px;*/
+  margin-bottom: 180px;
 }
 
 .content-container {
@@ -90,19 +90,48 @@ a:hover {
   padding: 0%;
   text-align: center;
   justify-content: center;
-  overflow: hidden;
   padding-top: 50px;
+}
+
+.img_responsive {
+  width: 100%;
+  height: auto;
+  margin: 5px;
+}
+
+.bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000ab;
+  z-index: 200;
+}
+
+.display-actived.positioned {
+  position: absolute;
+  width: auto !important;
+  height: 90vh !important;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border: white 10px solid;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
+  z-index: 200;
+}
+
+.bg-container:hover {
+  cursor: pointer;
 }
 
 .img_responsive:hover {
   cursor: pointer;
-  /*opacity: 0.85;*/
   transition: 0.25s;
-  transform: scale(1.05);
+  transform: scale(1.025);
   border: white 10px solid;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
 }
-
 
 .blur_loading {
   filter: blur(20px);
@@ -112,32 +141,16 @@ a:hover {
   position: relative;
 }
 
-.loading:after {
-  content: "";
-  z-index: 10;
-  display: block;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
-}
-
 .words {
+  position: relative;
+  margin: auto;
   font-family: 'Roboto', sans-serif;
-  padding: 75px 5px;
   text-align: left;
-  width: 100%;
-}
-
-.fixed-words {
-	text-indent: 40px;
-	padding-right: 25%;
 }
 
 .img_display {
-  /*padding-top: 50px;*/
+  border: white 10px solid;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
 }
 
 #scroll {
