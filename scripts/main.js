@@ -36,20 +36,17 @@ var home = function (x) {
 }
 
 var display_information = function (information) {
-    $(".content-container").removeClass('animated bounceInLeft');
-    $(".main-container").removeClass("loading");
+    $(".content-container").addClass("blur_loading");
     $(".content-container").html(`<div class="words"></div>`);
-
+    setTimeout(function(){
+        $(".content-container").removeClass("blur_loading");
+    },1000)
     setTimeout(function(x) {
         information.forEach(function(element) {
-            var p = `<div class="">${element}<div>`;
+            var p = `<div class="sentence">${element}<div>`;
             $(".words").append(p);
         });
-
-        $(".content-container").addClass('animated bounceInLeft');
-
     }, 250);
-
 }
 
 var side_bar = (x) => {
@@ -62,14 +59,13 @@ var side_bar = (x) => {
         $(".main-container").css("margin-left", "180px");
         sidebar_active = true;
     }
-
     image_adjust(image_type);
 }
 
 var display_art = function (currrent_object) {
-    
     image_type = ".img_responsive";
     $(".content-container").html("");
+    $(".content-container").addClass("blur_loading");
 
     for (const key in currrent_object) {
         $(".content-container").append(`<img src="${currrent_object[key]["image"]}" class="img_responsive"></img>`);
@@ -80,16 +76,18 @@ var display_art = function (currrent_object) {
         counter = 0;
 
     [].forEach.call(imgs, function (img) {
-        img.addEventListener('load', loadImage, false);
-        img.addEventListener('error', loadImage, false);
+        img.addEventListener('error', null, false);
+        //img.addEventListener('load', null, false);
         img.onerror = function () {
             $(img).remove();
         }
-    });
+        //img.onload = function () {}
 
-    function loadImage() {
-        image_adjust(image_type);
-    }
+    }, image_adjust(image_type));
+
+    setTimeout(function(){
+        $(".content-container").removeClass("blur_loading");
+    },1000)
 
     $(".img_responsive").on("click", function(x){
         $(".display-actived").remove();

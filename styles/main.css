@@ -1,13 +1,9 @@
 .side-bar_activate {
   height: 50px;
   width: 50px;
-  /* Set the width of the sidebar */
   position: fixed;
-  /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1;
-  /* Stay on top */
   top: 0;
-  /* Stay at the top */
   right: 0;
   overflow: hidden;
   display: flex;
@@ -32,19 +28,13 @@
 
 .side-bar {
   height: 100%;
-  /* Full-height: remove this if you want "auto" height */
   width: 180px;
-  /* Set the width of the sidebar */
   position: fixed;
-  /* Fixed Sidebar (stay in place on scroll) */
   z-index: 1;
-  /* Stay on top */
   top: 0;
-  /* Stay at the top */
   left: 0;
   background-color: rgb(255, 255, 255);
   overflow-x: hidden;
-  /* Disable horizontal scroll */
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
   color: #000000;
@@ -91,12 +81,37 @@ a:hover {
   text-align: center;
   justify-content: center;
   padding-top: 50px;
+  transition: ease-in-out 0.25s;
+}
+
+.grid-centered {
+  box-sizing: border-box;
+  position: relative;
+  height: auto;
+  min-height: 500px;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 45px;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  background-color: white;
 }
 
 .img_responsive {
   width: 100%;
   height: auto;
+  border: rgba(0, 0, 0, 0) 10px solid;
+  transition: ease-in-out 0.25s;
   margin: 5px;
+}
+
+.img_responsive:hover {
+  cursor: pointer;
+  transition: 0.25s;
+  transform: scale(1.025);
+  border: white 10px solid;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
 }
 
 .bg-container {
@@ -125,26 +140,25 @@ a:hover {
   cursor: pointer;
 }
 
-.img_responsive:hover {
-  cursor: pointer;
-  transition: 0.25s;
-  transform: scale(1.025);
-  border: white 10px solid;
-  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.74);
-}
-
 .blur_loading {
-  filter: blur(20px);
+  filter: blur(5px);
 }
 
 .loading {
   position: relative;
 }
+.sentence {
+  position: relative;
+  padding: 10px;
+  width: 80%;
+  text-align: justify;
+  font-family: 'Roboto', sans-serif;
+}
+}
 
 .words {
   position: relative;
   margin: auto;
-  font-family: 'Roboto', sans-serif;
   text-align: left;
 }
 
