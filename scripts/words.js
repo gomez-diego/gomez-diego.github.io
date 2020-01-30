@@ -1,11 +1,12 @@
 var contact_info = [
-    `Have a project in mind? `,
-    `Feel free to reach out!`,
+    `LETS WORK`,
+    `HAVE A PROJECT IN MIND?`,
+    `REACH OUT!`,
     `<br>`,
-    `<i class="far fa-envelope"></i> email`,
+    `<i class="far fa-envelope"></i> EMAIL`,
     `<a href="mailto:diegog123098@gmail.com">diegog123098@gmail.com<a>`,
     `<br>`,
-    `<i class="fab fa-instagram"></i> instagram`,
+    `<i class="fab fa-instagram"></i> INSTAGRAM`,
     `<a target="_blank" href="https://www.instagram.com/gr11m/">@gr11m<a>`,
     //`<i class="fab fa-twitter"></i> twitter: <a target="_blank" href="http://www.twitter.com">@username<a>`,
 ];
