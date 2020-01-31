@@ -12,7 +12,7 @@ var contact_info = [
 ];
 
 var about_me = [
-    `I am a multi-media illustrator and designer. For as long as I could remember. I have jumped from style to style, exploring new techniques, but landed on digital art as my main medium.`,
+    `I am a multi-media illustrator and designer. I have jumped from style to style, exploring new techniques, but landed on digital art as my main medium.`,
 	`My work has grown from drawings to full-sized vector art. My passion for art initially started early on when I was first introduced to animation, and from there I couldn't stop drawing. My inspiration comes from different fields. From video games, music covers, cartoons, tattoos to even simple product designs.`,
 	`I learn through every piece I have made and continue to push new techniques to make sure the job gets done.  My desire to improve continues to grow so I can come out with new styles and keep things fresh. I make multi-styled designs and offer different types of digital pieces. Do not hesitate to contact me for inquiries.`
 ];
